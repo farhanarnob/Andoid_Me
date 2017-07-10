@@ -37,11 +37,22 @@ public class BodyPartFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_body_part, container, false);
 
         // Get a reference to the ImageView in the fragment layout
-        ImageView imageView = (ImageView) rootView.findViewById(R.id.body_part_image_view);
-
+        final ImageView imageView = (ImageView) rootView.findViewById(R.id.body_part_image_view);
+        imageView.setImageResource(mImageIds.get(mListIndex));
         // Set the image resource to display
         if (mImageIds != null) {
-            imageView.setImageResource(mImageIds.get(mListIndex));
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListIndex < mImageIds.size() - 1) {
+                        mListIndex++;
+                    } else {
+                        mListIndex = 0;
+                    }
+                    imageView.setImageResource(mImageIds.get(mListIndex));
+                }
+            });
+
         } else {
             Log.v(TAG, "This fragment has a null list of image id's");
         }
