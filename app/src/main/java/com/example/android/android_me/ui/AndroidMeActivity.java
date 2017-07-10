@@ -31,16 +31,39 @@ public class AndroidMeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
 
+        // Use a FragmentManager and transaction to add the fragment to the screen
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+
+        // For head
         BodyPartFragment headFragment = new BodyPartFragment();
         headFragment.setImageIds(AndroidImageAssets.getHeads());
         headFragment.setListIndex(2);
 
-        // Use a FragmentManager and transaction to add the fragment to the screen
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-        // Fragment transaction
+        // Fragment transaction for head
         fragmentManager.beginTransaction()
                 .add(R.id.head_container, headFragment)
+                .commit();
+
+
+        // For body
+        BodyPartFragment bodyFragment = new BodyPartFragment();
+        bodyFragment.setImageIds(AndroidImageAssets.getBodies());
+        bodyFragment.setListIndex(1);
+
+        // Fragment transaction for body
+        fragmentManager.beginTransaction()
+                .add(R.id.body_container, bodyFragment)
+                .commit();
+
+        // For Leg
+        BodyPartFragment legFragment = new BodyPartFragment();
+        legFragment.setImageIds(AndroidImageAssets.getLegs());
+        legFragment.setListIndex(1);
+
+        // Fragment transaction for leg
+        fragmentManager.beginTransaction()
+                .add(R.id.leg_container, legFragment)
                 .commit();
     }
 
