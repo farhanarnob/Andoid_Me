@@ -11,6 +11,7 @@ import android.widget.ImageView;
 
 import com.example.android.android_me.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,8 +20,9 @@ import java.util.List;
  */
 
 public class BodyPartFragment extends Fragment {
+    public static final String IMAGE_ID_LIST = "image_ids";
+    public static final String LIST_INDEX = "list_index";
     private final String TAG = BodyPartFragment.this.getClass().getName();
-
     private int mListIndex;
     private List<Integer> mImageIds;
 
@@ -33,14 +35,20 @@ public class BodyPartFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        // Load the saved state
+        if (savedInstanceState != null) {
+            mImageIds = savedInstanceState.getIntegerArrayList(IMAGE_ID_LIST);
+            mListIndex = savedInstanceState.getInt(LIST_INDEX);
+        }
         // Inflate the Android_Me fragment layout
         View rootView = inflater.inflate(R.layout.fragment_body_part, container, false);
 
         // Get a reference to the ImageView in the fragment layout
         final ImageView imageView = (ImageView) rootView.findViewById(R.id.body_part_image_view);
-        imageView.setImageResource(mImageIds.get(mListIndex));
+
         // Set the image resource to display
         if (mImageIds != null) {
+            imageView.setImageResource(mImageIds.get(mListIndex));
             imageView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -69,4 +77,9 @@ public class BodyPartFragment extends Fragment {
         this.mImageIds = mImageIds;
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putIntegerArrayList(IMAGE_ID_LIST, (ArrayList<Integer>) mImageIds);
+        outState.putInt(LIST_INDEX, mListIndex);
+    }
 }
