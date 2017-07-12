@@ -25,22 +25,24 @@ import com.example.android.android_me.data.AndroidImageAssets;
 
 // This activity will display a custom Android image composed of three body parts: head, body, and legs
 public class AndroidMeActivity extends AppCompatActivity {
+    private static final String HEAD_INDEX = String.valueOf(R.string.head_index);
+    private static final String BODY_INDEX = String.valueOf(R.string.body_index);
+    private static final String LEG_INDEX = String.valueOf(R.string.leg_index);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_android_me);
 
-
         if (savedInstanceState == null) {
             // Use a FragmentManager and transaction to add the fragment to the screen
             FragmentManager fragmentManager = getSupportFragmentManager();
 
-
             // For head
             BodyPartFragment headFragment = new BodyPartFragment();
             headFragment.setImageIds(AndroidImageAssets.getHeads());
-            headFragment.setListIndex(2);
+            int headIndex = getIntent().getIntExtra(HEAD_INDEX, 0);
+            headFragment.setListIndex(headIndex);
 
             // Fragment transaction for head
             fragmentManager.beginTransaction()
@@ -51,7 +53,8 @@ public class AndroidMeActivity extends AppCompatActivity {
             // For body
             BodyPartFragment bodyFragment = new BodyPartFragment();
             bodyFragment.setImageIds(AndroidImageAssets.getBodies());
-            bodyFragment.setListIndex(1);
+            int bodyIndex = getIntent().getIntExtra(BODY_INDEX, 0);
+            bodyFragment.setListIndex(bodyIndex);
 
             // Fragment transaction for body
             fragmentManager.beginTransaction()
@@ -61,7 +64,8 @@ public class AndroidMeActivity extends AppCompatActivity {
             // For Leg
             BodyPartFragment legFragment = new BodyPartFragment();
             legFragment.setImageIds(AndroidImageAssets.getLegs());
-            legFragment.setListIndex(1);
+            int legIndex = getIntent().getIntExtra(LEG_INDEX, 0);
+            legFragment.setListIndex(legIndex);
 
             // Fragment transaction for leg
             fragmentManager.beginTransaction()

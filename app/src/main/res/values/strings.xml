@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">Android_Me</string>
     <string name="image_of_the_body_part">image of the body part</string>
+    <string name="image_ids">imagesIds</string>
+    <string name="list_index">listIndex</string>
+    <string name="head_index">headIndex</string>
+    <string name="body_index">bodyIndex</string>
+    <string name="leg_index">legIndex</string>
 </resources>

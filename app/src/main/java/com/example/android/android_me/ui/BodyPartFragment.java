@@ -20,8 +20,8 @@ import java.util.List;
  */
 
 public class BodyPartFragment extends Fragment {
-    public static final String IMAGE_ID_LIST = "image_ids";
-    public static final String LIST_INDEX = "list_index";
+    public static final String IMAGE_ID_LIST = String.valueOf(R.string.image_ids);
+    public static final String LIST_INDEX = String.valueOf(R.string.list_index);
     private final String TAG = BodyPartFragment.this.getClass().getName();
     private int mListIndex;
     private List<Integer> mImageIds;
